@@ -76,10 +76,16 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
-  removeEmployee(event:any){
-
+  removeEmployee(event: any) {
+    this.employees.forEach((val, index) => {
+      if (val.id === parseInt(event)) {
+        this.employeeService.deleteEmployee(event).subscribe((res) => {
+          this.employees.splice(index, 1);
+        });
+      }
+    });
   }
-  
+
   clearForm() {
     this.FirstName.setValue('');
     this.LastName.setValue('');

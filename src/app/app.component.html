@@ -1,13 +1,14 @@
 <div class="container-fluid g-0">
   <app-header></app-header>
   <main class="black-border">
-    <div class="toolbar black-border">
+    <div class="toolbar">
       <div class="add-employee">
         <button
           type="button"
           class="btn btn-outline-success btn-lg"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
+          #addEmployeeButton
         >
           Add Employee
         </button>
@@ -21,11 +22,20 @@
       </div>
     </div>
     <div class="employees">
-      <div class="row mt-5">
-        <div class="row text-center">
-          <span class="text-secondary fs-2 fw-bold fst-italic">
-            There are no employees !
-          </span>
+      <div class="row mt-5" *ngIf="employees.length == 0">
+        <div class="col text-center">
+          <span class="text-secondary fs-2 fw-bold fst-italic"
+            >There are No Employees Added!</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="row mt-4"
+        *ngFor="let employee of employeesToDisplay; let ei = index"
+      >
+        <div class="col">
+          <app-employee [employee]="employee" (onRemoveEmployee)="removeEmployee($event)"></app-employee>
         </div>
       </div>
     </div>
@@ -178,7 +188,12 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="addEmployee()"
+        >
           Insert
         </button>
       </div>

@@ -30,4 +30,8 @@ export class EmployeeComponent implements OnInit {
   deleteEmployeeClicked() {
     this.onRemoveEmployee.emit(this.employee.id);
   }
+
+  editEmployeeClicked(){
+    this.onEditEmployee.emit(this.employee.id);
+  }
 }

@@ -86,6 +86,47 @@ export class AppComponent implements OnInit, AfterViewInit {
     });
   }
 
+  editEmployee(event: any) {
+    this.employees.forEach((val, ind) => {
+      if (val.id === event) {
+        this.setForm(val);
+      }
+    });
+    this.removeEmployee(event);
+    this.addEmployeeButton.nativeElement.click();
+  }
+  setForm(emp: Employee) {
+    this.FirstName.setValue(emp.firstname);
+    this.LastName.setValue(emp.lastname);
+    this.BirthDay.setValue(emp.birthdate);
+    this.Gender.setValue(emp.gender);
+
+    let educationIndex = 0;
+    this.educationOptions.forEach((val, index) => {
+      if (val === emp.education) educationIndex = index;
+    });
+    this.Education.setValue(educationIndex);
+
+    this.Company.setValue(emp.company);
+    this.JobExperience.setValue(emp.jobExperience);
+    this.Salary.setValue(emp.salary);
+    this.fileInput.nativeElement.value = '';
+  }
+
+  searchEmployees(event: any) {
+    let filteredEmployees: Employee[] = [];
+
+    if (event === '') {
+      this.employeesToDisplay = this.employees;
+    } else {
+      filteredEmployees = this.employees.filter((val, index) => {
+        let targetKey = val.firstname.toLowerCase() + '' + val.lastname.toLowerCase();
+        let searchKey = event.toLowerCase();
+        return targetKey.includes(searchKey);
+      });
+      this.employeesToDisplay = filteredEmployees;
+    }
+  }
   clearForm() {
     this.FirstName.setValue('');
     this.LastName.setValue('');

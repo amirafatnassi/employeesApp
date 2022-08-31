@@ -9,12 +9,14 @@ import { Employee } from '../models/employee.model';
 export class EmployeeComponent implements OnInit {
   @Input() employee: Employee;
   @Output() onRemoveEmployee = new EventEmitter<number>();
+  @Output() onEditEmployee = new EventEmitter<number>();
+
   constructor() {
     this.employee = {
       firstname: '',
       lastname: '',
       birthdate: '',
-      gender: '',
+        gender: '',
       education: '',
       company: '',
       jobExperience: 0,

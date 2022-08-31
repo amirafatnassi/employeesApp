@@ -95,6 +95,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.removeEmployee(event);
     this.addEmployeeButton.nativeElement.click();
   }
+
   setForm(emp: Employee) {
     this.FirstName.setValue(emp.firstname);
     this.LastName.setValue(emp.lastname);
@@ -127,6 +128,7 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.employeesToDisplay = filteredEmployees;
     }
   }
+
   clearForm() {
     this.FirstName.setValue('');
     this.LastName.setValue('');
@@ -146,7 +148,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     return this.employeeForm.get('lastname') as FormControl;
   }
   public get BirthDay(): FormControl {
-    return this.employeeForm.get('birthdate') as FormControl;
+    return this.employeeForm.get('birthday') as FormControl;
   }
   public get Gender(): FormControl {
     return this.employeeForm.get('gender') as FormControl;

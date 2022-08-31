@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Employee } from '../models/employee.model';
+import { ConnectableObservable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,8 @@ export class EmployeeService {
   }
 
   postEmployee(employee: Employee) {
-    return this.http.post<Employee>(this.baseUrl, employee);
+    return this.http.post<Employee>(this.baseUrl, employee); 
+    console.log(Employee);
   }
 
   deleteEmployee(id: string) {
